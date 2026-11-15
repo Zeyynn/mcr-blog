@@ -8,10 +8,10 @@ export const metadata: Metadata = { title: "Blog" };
 export default function Blog() {
   return (
     <>
-      <PageTitle eyebrow="Journal" title="Blog" sub="Longer thoughts on the band, the records and the fandom." />
+      <PageTitle eyebrow="Journal" title="Blog" sub="Posts about the band and the albums." />
       <div className="grid gap-4">
         {getPosts().map((p) => (
-          <Card key={p.slug} href={`/blog/${p.slug}`} eyebrow={`${p.date} · ${p.tags.join(", ")}`} title={p.title} image={postImage(p.tags)}>
+          <Card key={p.slug} href={`/blog/${p.slug}`} eyebrow={`${p.date} · ${p.minutes} min read · ${p.tags.join(", ")}`} title={p.title} image={postImage(p.tags)}>
             {p.excerpt}
           </Card>
         ))}

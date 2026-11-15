@@ -16,7 +16,7 @@ export default function Nav() {
     <>
       <nav className="hidden gap-5 text-sm uppercase tracking-widest md:flex">
         {nav.map(([label, href]) => (
-          <Link key={href} href={href} className="text-muted transition-colors hover:text-parade">{label}</Link>
+          <Link key={href} href={href} className="text-muted transition-colors hover:text-parade hover:underline underline-offset-4">{label}</Link>
         ))}
       </nav>
       <button
@@ -28,7 +28,7 @@ export default function Nav() {
       {open && (
         <nav className="absolute left-0 right-0 top-full z-40 flex flex-col border-b border-line bg-background px-6 py-4 md:hidden">
           {nav.map(([label, href]) => (
-            <Link key={href} href={href} onClick={() => setOpen(false)} className="py-3 text-sm uppercase tracking-widest text-muted hover:text-parade">{label}</Link>
+            <Link key={href} href={href} onClick={() => setOpen(false)} className="py-3 text-sm uppercase tracking-widest text-muted hover:text-parade hover:underline underline-offset-4">{label}</Link>
           ))}
         </nav>
       )}

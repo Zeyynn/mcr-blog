@@ -26,7 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </header>
         <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-12">{children}</main>
         <footer className="border-t border-line py-8 text-center text-xs text-muted">
-          Fan-made, unofficial. Not affiliated with My Chemical Romance. Long live the Black Parade.
+          Fan-made, unofficial. Not affiliated with My Chemical Romance.
         </footer>
       </body>
     </html>

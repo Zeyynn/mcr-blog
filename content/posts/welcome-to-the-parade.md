@@ -1,16 +1,10 @@
 ---
-title: Welcome to the Parade
+title: Welcome
 date: 2026-11-01
-excerpt: What this wiki and blog is, and how to find your way around.
+excerpt: About this site.
 tags: [meta]
 ---
 
-This is a fan-made home for everything My Chemical Romance: albums, members, eras and the stories around them.
+A fan-made wiki and blog for My Chemical Romance. It is unofficial and not affiliated with the band.
 
-## How it works
-
-- **Albums** hold tracklists and notes for each record.
-- **Members** has short bios of everyone who has played in the band.
-- **Blog** is where longer thoughts live.
-
-Pull up a chair. The parade is coming.
+Use the menu to browse albums, members and the timeline, or search for something specific.

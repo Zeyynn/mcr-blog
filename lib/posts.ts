@@ -12,6 +12,7 @@ export type Post = {
   excerpt: string;
   tags: string[];
   body: string;
+  minutes: number;
 };
 
 export function getPosts(): Post[] {
@@ -27,6 +28,7 @@ export function getPosts(): Post[] {
         excerpt: String(data.excerpt ?? ""),
         tags: (data.tags as string[]) ?? [],
         body: content,
+        minutes: Math.max(1, Math.round(content.split(/\s+/).length / 200)),
       };
     })
     .sort((a, b) => b.date.localeCompare(a.date));
