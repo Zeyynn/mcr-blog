@@ -28,7 +28,7 @@ export default function Hero() {
   return (
     <div className="relative -mx-6 -mt-12 mb-16 h-[26rem] overflow-hidden border-b border-line md:h-[36rem]">
       <div ref={img} className="absolute inset-0 will-change-transform">
-        <Image src="/hero.jpg" alt="" fill priority sizes="100vw" className="object-cover object-[50%_65%]" />
+        <Image src="/hero.jpg" alt="" fill priority sizes="100vw" className="no-filter object-cover object-[50%_65%]" />
       </div>
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-transparent" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-transparent" />

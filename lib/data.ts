@@ -308,7 +308,7 @@ export const members: Member[] = [
   },
   {
     slug: "matt-pelissier",
-    photo: "/members/matt-pelissier.png",
+    photo: "/members/matt-pelissier.webp",
     name: "Matt Pelissier",
     role: "Drums",
     years: "2001–2004",

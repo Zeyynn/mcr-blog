@@ -19,7 +19,7 @@ export default function Home() {
         <Reveal><h2 className="mb-6 font-display text-3xl">Studio albums</h2></Reveal>
         <div className="grid gap-4 sm:grid-cols-2">
           {studioAlbums().map((a) => (
-            <Card key={a.slug} href={`/albums/${a.slug}`} eyebrow={String(a.year)} title={a.title} image={{ src: a.cover, alt: `${a.title} cover` }}>
+            <Card key={a.slug} href={`/albums/${a.slug}`} eyebrow={String(a.year)} title={a.title} image={{ src: a.cover, alt: `${a.title} cover`, sizes: "(min-width: 1024px) 480px, (min-width: 640px) 50vw, 100vw" }}>
               {a.blurb}
             </Card>
           ))}

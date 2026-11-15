@@ -38,5 +38,5 @@ export const getPost = (slug: string) => getPosts().find((p) => p.slug === slug)
 
 export function postImage(tags: string[]) {
   const a = albums.find((x) => tags.includes(x.tag));
-  return a ? { src: a.cover, alt: `${a.title} cover`, ratio: "aspect-[16/9]" } : undefined;
+  return a ? { src: a.cover, alt: `${a.title} cover`, ratio: "aspect-[16/9]", sizes: "(min-width: 1024px) 976px, 100vw" } : undefined;
 }

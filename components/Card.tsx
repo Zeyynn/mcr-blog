@@ -7,7 +7,7 @@ export default function Card({
   href, eyebrow, title, children, image, monogram,
 }: {
   href: string; eyebrow?: string; title: string; children?: React.ReactNode;
-  image?: { src: string; alt: string; ratio?: string; top?: boolean };
+  image?: { src: string; alt: string; ratio?: string; top?: boolean; sizes?: string };
   monogram?: { name: string; index: number; photo?: string };
 }) {
   return (
@@ -15,7 +15,7 @@ export default function Card({
     <Link href={href} className="group block h-full overflow-hidden border border-line bg-panel transition-all hover:-translate-y-1 hover:border-parade hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,.18)]">
       {image && (
         <div className={`relative ${image.ratio ?? "aspect-square"} overflow-hidden border-b border-line`}>
-          <Image src={image.src} alt={image.alt} fill sizes="(min-width: 640px) 33vw, 100vw" className={`object-cover ${image.top ? "object-top" : ""} transition-transform duration-500 group-hover:scale-105`} />
+          <Image src={image.src} alt={image.alt} fill sizes={image.sizes ?? "(min-width: 1024px) 340px, (min-width: 640px) 50vw, 100vw"} className={`object-cover ${image.top ? "object-top" : ""} transition-transform duration-500 group-hover:scale-105`} />
         </div>
       )}
       <div className="flex items-start gap-4 p-6">
