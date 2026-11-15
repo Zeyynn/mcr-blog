@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import Monogram from "@/components/Monogram";
-import PageTitle from "@/components/PageTitle";
 import { albumsFor, getMember, members } from "@/lib/data";
 
 export const generateStaticParams = () => members.map((m) => ({ slug: m.slug }));

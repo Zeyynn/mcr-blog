@@ -81,7 +81,7 @@ export default async function AlbumPage(props: PageProps<"/albums/[slug]">) {
       <section>
         <h2 className="mb-4 font-display text-3xl">Lineup</h2>
         <div className="flex flex-wrap gap-6">
-          {album.lineup.map((ms, idx) => {
+          {album.lineup.map((ms) => {
             const m = getMember(ms)!;
             return (
               <Link key={ms} href={`/members/${ms}`} className="group flex items-center gap-3">
