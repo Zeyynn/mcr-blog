@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Pirata_One } from "next/font/google";
 import Link from "next/link";
 import Nav from "@/components/Nav";
+import BackToTop from "@/components/BackToTop";
+import ScrollProgress from "@/components/ScrollProgress";
 import "./globals.css";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -16,6 +18,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${geistSans.variable} ${pirata.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
+        <ScrollProgress />
+        <BackToTop />
         <header className="relative border-b border-line">
           <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
             <Link href="/" className="font-display text-2xl tracking-wide">

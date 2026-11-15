@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Markdown from "react-markdown";
+import YouTube from "@/components/YouTube";
 import PageTitle from "@/components/PageTitle";
 import { getPost, getPosts } from "@/lib/posts";
 
@@ -21,7 +22,22 @@ export default async function PostPage(props: PageProps<"/blog/[slug]">) {
     <article className="mx-auto max-w-2xl">
       <PageTitle eyebrow={`${post.date} · ${post.minutes} min read`} title={post.title} />
       <div className="prose-parade">
-        <Markdown>{post.body}</Markdown>
+        <Markdown
+          components={{
+            // A paragraph holding only a YouTube link, written as <https://youtu.be/ID>, becomes a player.
+            p({ node, children }) {
+              const only = node?.children.length === 1 ? node.children[0] : undefined;
+              if (only && only.type === "element" && only.tagName === "a") {
+                const href = String((only.properties as { href?: string }).href ?? "");
+                const m = href.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=)([\w-]{11})/);
+                if (m) return <YouTube id={m[1]} />;
+              }
+              return <p>{children}</p>;
+            },
+          }}
+        >
+          {post.body}
+        </Markdown>
       </div>
       <div className="mt-10 flex flex-wrap gap-2 border-t border-line pt-6">
         {post.tags.map((t) => (

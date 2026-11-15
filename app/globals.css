@@ -44,3 +44,30 @@ body::after {
   content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 49;
   background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.6) 100%);
 }
+
+/* motion */
+html { scroll-behavior: smooth; }
+
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.reveal-in { opacity: 1; transform: none; }
+.grid > :nth-child(2) > .reveal, .grid > .reveal:nth-child(2) { transition-delay: 90ms; }
+.grid > :nth-child(3) > .reveal, .grid > .reveal:nth-child(3) { transition-delay: 180ms; }
+.grid > :nth-child(4) > .reveal, .grid > .reveal:nth-child(4) { transition-delay: 270ms; }
+
+@keyframes hero-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.hero-in { opacity: 0; animation: hero-in 1s ease forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .hero-in { opacity: 1; animation: none; }
+}
+
+/* page transition */
+@keyframes page-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.page-in { animation: page-in .45s ease both; }
+@media (prefers-reduced-motion: reduce) { .page-in { animation: none; } }
+
+/* greyscale images, colour returns on hover */
+img { filter: grayscale(1) contrast(1.05); transition: filter .5s ease; }
+a:hover img, .group:hover img { filter: grayscale(0); }

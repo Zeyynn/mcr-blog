@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import YouTube from "@/components/YouTube";
 import Monogram from "@/components/Monogram";
 import { albums, getAlbum, getMember, members } from "@/lib/data";
 import { getPosts } from "@/lib/posts";
@@ -87,6 +88,15 @@ export default async function AlbumPage(props: PageProps<"/albums/[slug]">) {
           })}
         </div>
       </section>
+
+      {album.videos && album.videos.length > 0 && (
+        <section>
+          <h2 className="mb-2 font-display text-3xl">Videos</h2>
+          <div className="grid gap-x-8 md:grid-cols-2">
+            {album.videos.map((v) => <YouTube key={v.id} id={v.id} title={v.title} />)}
+          </div>
+        </section>
+      )}
 
       {posts.length > 0 && (
         <section>

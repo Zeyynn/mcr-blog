@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Card from "@/components/Card";
+import Reveal from "@/components/Reveal";
 import Hero from "@/components/Hero";
 import { albums } from "@/lib/data";
 import { getPosts, postImage } from "@/lib/posts";
@@ -15,7 +16,7 @@ export default function Home() {
         <Link href="/blog" className="border border-line px-6 py-3 text-sm uppercase tracking-widest hover:border-parade">Read the blog</Link>
       </div>
       <section>
-        <h2 className="mb-6 font-display text-3xl">Discography</h2>
+        <Reveal><h2 className="mb-6 font-display text-3xl">Discography</h2></Reveal>
         <div className="grid gap-4 sm:grid-cols-2">
           {albums.map((a) => (
             <Card key={a.slug} href={`/albums/${a.slug}`} eyebrow={String(a.year)} title={a.title} image={{ src: a.cover, alt: `${a.title} cover` }}>
@@ -26,7 +27,7 @@ export default function Home() {
       </section>
 
       <section>
-        <h2 className="mb-6 font-display text-3xl">Latest from the blog</h2>
+        <Reveal><h2 className="mb-6 font-display text-3xl">Latest from the blog</h2></Reveal>
         <div className="grid gap-4">
           {posts.map((p) => (
             <Card key={p.slug} href={`/blog/${p.slug}`} eyebrow={`${p.date} · ${p.minutes} min read`} title={p.title} image={postImage(p.tags)}>

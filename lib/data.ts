@@ -7,6 +7,7 @@ export type Album = {
   producer: string;
   genres: string;
   singles: string[];
+  videos?: { title: string; id: string }[]; // YouTube video IDs
   lineup: string[];
   label: string;
   tag: string;
