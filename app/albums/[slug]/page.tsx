@@ -27,7 +27,7 @@ export default async function AlbumPage(props: PageProps<"/albums/[slug]">) {
     ["Label", album.label],
     ["Producer", album.producer],
     ["Genre", album.genres],
-    ["Tracks", `${album.tracks.length}${album.partialTracks ? "+" : ""}`],
+    ["Tracks", String(album.tracks.length)],
   ];
   return (
     <article className="space-y-16">
@@ -53,7 +53,7 @@ export default async function AlbumPage(props: PageProps<"/albums/[slug]">) {
 
       <div className="grid gap-12 md:grid-cols-2">
         <section>
-          <h2 className="mb-4 font-display text-3xl">{album.partialTracks ? "Key tracks" : "Tracklist"}</h2>
+          <h2 className="mb-4 font-display text-3xl">Tracklist</h2>
           <ol className="list-decimal space-y-2 pl-6 marker:text-parade">
             {album.tracks.map((t) => (
               <li key={t} className={album.singles.includes(t) ? "text-foreground" : "text-white/85"}>
