@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import YouTube from "@/components/YouTube";
 import Monogram from "@/components/Monogram";
-import { albums, getAlbum, getMember, members } from "@/lib/data";
+import { albums, getAlbum, getMember, members, yearOf } from "@/lib/data";
 import { getPosts } from "@/lib/posts";
 
 export const generateStaticParams = () => albums.map((a) => ({ slug: a.slug }));
@@ -23,10 +23,11 @@ export default async function AlbumPage(props: PageProps<"/albums/[slug]">) {
   const next = albums[i + 1];
   const posts = getPosts().filter((p) => p.tags.includes(album.tag));
   const facts: [string, string][] = [
+    ["Type", album.kind],
     ["Released", album.released],
     ["Label", album.label],
-    ["Producer", album.producer],
-    ["Genre", album.genres],
+    ...(album.producer ? [["Producer", album.producer] as [string, string]] : []),
+    ...(album.genres ? [["Genre", album.genres] as [string, string]] : []),
     ["Tracks", String(album.tracks.length)],
   ];
   return (
@@ -36,13 +37,13 @@ export default async function AlbumPage(props: PageProps<"/albums/[slug]">) {
           <Image src={album.cover} alt={`${album.title} cover`} fill priority sizes="280px" className="object-cover" />
         </div>
         <div>
-          <p className="mb-2 text-xs uppercase tracking-widest text-parade">{album.year} · {album.label}</p>
+          <p className="mb-2 text-xs uppercase tracking-widest text-parade">{yearOf(album)} · {album.kind}</p>
           <h1 className="font-display text-5xl leading-tight md:text-6xl">{album.title}</h1>
           <p className="mt-4 max-w-xl text-muted">{album.blurb}</p>
         </div>
       </div>
 
-      <dl className="grid grid-cols-2 gap-px border border-line bg-line md:grid-cols-5">
+      <dl className="grid grid-cols-2 gap-px border border-line bg-line md:grid-cols-3 lg:grid-cols-6">
         {facts.map(([k, v]) => (
           <div key={k} className="bg-panel p-4">
             <dt className="text-xs uppercase tracking-widest text-parade">{k}</dt>
@@ -54,14 +55,19 @@ export default async function AlbumPage(props: PageProps<"/albums/[slug]">) {
       <div className="grid gap-12 md:grid-cols-2">
         <section>
           <h2 className="mb-4 font-display text-3xl">Tracklist</h2>
-          <ol className="list-decimal space-y-2 pl-6 marker:text-parade">
-            {album.tracks.map((t) => (
-              <li key={t} className={album.singles.includes(t) ? "text-foreground" : "text-white/85"}>
-                {t}
-                {album.singles.includes(t) && <span className="ml-2 border border-parade px-1.5 py-0.5 align-middle text-[10px] uppercase tracking-widest text-parade">Single</span>}
-              </li>
-            ))}
-          </ol>
+          {(album.discs ?? [{ title: "", tracks: album.tracks }]).map((d) => (
+            <div key={d.title} className="mb-8">
+              {d.title && <h3 className="mb-3 text-xs uppercase tracking-widest text-parade">{d.title}</h3>}
+              <ol className="list-decimal space-y-2 pl-6 marker:text-parade">
+                {d.tracks.map((t) => (
+                  <li key={t} className={album.singles.includes(t) ? "text-foreground" : "text-white/85"}>
+                    {t}
+                    {album.singles.includes(t) && <span className="ml-2 border border-parade px-1.5 py-0.5 align-middle text-[10px] uppercase tracking-widest text-parade">Single</span>}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ))}
         </section>
         <section>
           <h2 className="mb-4 font-display text-3xl">Notes</h2>
@@ -71,6 +77,7 @@ export default async function AlbumPage(props: PageProps<"/albums/[slug]">) {
         </section>
       </div>
 
+      {album.lineup.length > 0 && (
       <section>
         <h2 className="mb-4 font-display text-3xl">Lineup</h2>
         <div className="flex flex-wrap gap-6">
@@ -88,6 +95,7 @@ export default async function AlbumPage(props: PageProps<"/albums/[slug]">) {
           })}
         </div>
       </section>
+      )}
 
       {album.videos && album.videos.length > 0 && (
         <section>

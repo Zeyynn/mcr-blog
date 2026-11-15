@@ -19,7 +19,7 @@ export default function SearchBox({ entries }: { entries: Entry[] }) {
       />
       <ul className="mt-6 divide-y divide-line border border-line">
         {results.map((r) => (
-          <li key={r.href}>
+          <li key={`${r.type}|${r.title}|${r.href}`}>
             <Link href={r.href} className="flex items-baseline justify-between gap-4 px-5 py-3 hover:bg-panel">
               <span>{r.title}</span>
               <span className="text-xs uppercase tracking-widest text-parade">{r.type}</span>
