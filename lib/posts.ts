@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import { albums } from "./data";
 
 const dir = path.join(process.cwd(), "content/posts");
 
@@ -32,3 +33,8 @@ export function getPosts(): Post[] {
 }
 
 export const getPost = (slug: string) => getPosts().find((p) => p.slug === slug);
+
+export function postImage(tags: string[]) {
+  const a = albums.find((x) => tags.includes(x.tag));
+  return a ? { src: a.cover, alt: `${a.title} cover`, ratio: "aspect-[16/9]" } : undefined;
+}

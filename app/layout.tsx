@@ -8,13 +8,12 @@ const pirata = Pirata_One({ variable: "--font-pirata", subsets: ["latin"], weigh
 
 export const metadata: Metadata = {
   title: { default: "The Black Parade Wiki", template: "%s · The Black Parade Wiki" },
-  description: "A fan-made My Chemical Romance wiki and blog: albums, members, eras and more.",
+  description: "A fan-made My Chemical Romance wiki and blog: albums, members and more.",
 };
 
 const nav = [
   ["Albums", "/albums"],
   ["Members", "/members"],
-  ["Eras", "/eras"],
   ["Blog", "/blog"],
 ] as const;
 

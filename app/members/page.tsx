@@ -10,8 +10,8 @@ export default function Members() {
     <>
       <PageTitle eyebrow="The band" title="Members" sub="Everyone who has marched in the parade." />
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {members.map((m) => (
-          <Card key={m.slug} href={`/members/${m.slug}`} eyebrow={m.role} title={m.name}>
+        {members.map((m, i) => (
+          <Card key={m.slug} href={`/members/${m.slug}`} eyebrow={m.role} title={m.name} image={m.photo ? { src: m.photo, alt: m.name, ratio: "aspect-[3/4]", top: true } : undefined} monogram={m.photo ? undefined : { name: m.name, index: i }}>
             {m.years}
           </Card>
         ))}

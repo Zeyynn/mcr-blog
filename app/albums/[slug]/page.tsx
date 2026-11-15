@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import PageTitle from "@/components/PageTitle";
-import { albums, getAlbum, getEra } from "@/lib/data";
+import { albums, getAlbum } from "@/lib/data";
 
 export const generateStaticParams = () => albums.map((a) => ({ slug: a.slug }));
 
@@ -15,10 +15,18 @@ export default async function AlbumPage(props: PageProps<"/albums/[slug]">) {
   const { slug } = await props.params;
   const album = getAlbum(slug);
   if (!album) notFound();
-  const era = getEra(album.era);
   return (
     <article>
-      <PageTitle eyebrow={`${album.year} · ${album.label}`} title={album.title} sub={album.blurb} />
+      <div className="mb-12 grid items-center gap-8 md:grid-cols-[280px_1fr]">
+        <div className="relative aspect-square overflow-hidden border border-line shadow-[0_20px_60px_-15px_rgba(179,18,28,.5)]">
+          <Image src={album.cover} alt={`${album.title} cover`} fill priority sizes="280px" className="object-cover" />
+        </div>
+        <div>
+          <p className="mb-2 text-xs uppercase tracking-widest text-parade">{album.year} · {album.label}</p>
+          <h1 className="font-display text-5xl leading-tight md:text-6xl">{album.title}</h1>
+          <p className="mt-4 max-w-xl text-muted">{album.blurb}</p>
+        </div>
+      </div>
       <div className="grid gap-12 md:grid-cols-2">
         <section>
           <h2 className="mb-4 font-display text-3xl">{album.partialTracks ? "Key tracks" : "Tracklist"}</h2>
@@ -31,11 +39,6 @@ export default async function AlbumPage(props: PageProps<"/albums/[slug]">) {
           <ul className="list-square space-y-3 pl-5 text-muted marker:text-parade" style={{ listStyleType: "square" }}>
             {album.notes.map((n) => <li key={n}>{n}</li>)}
           </ul>
-          {era && (
-            <p className="mt-8 text-sm">
-              Era: <Link className="text-parade underline" href={`/eras/${era.slug}`}>{era.name}</Link>
-            </p>
-          )}
         </section>
       </div>
     </article>

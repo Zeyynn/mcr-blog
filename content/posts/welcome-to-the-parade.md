@@ -11,7 +11,6 @@ This is a fan-made home for everything My Chemical Romance: albums, members, era
 
 - **Albums** hold tracklists and notes for each record.
 - **Members** has short bios of everyone who has played in the band.
-- **Eras** walks through the concepts, from Bullets to the Killjoys.
 - **Blog** is where longer thoughts live.
 
 Pull up a chair. The parade is coming.
